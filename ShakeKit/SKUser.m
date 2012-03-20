@@ -40,6 +40,8 @@ static NSString * const kUserProfileImageURL = @"profile_image_url";
 {
   SGRelease(screenName);
   SGRelease(profileImageURL);
+
+  [super dealloc];
 }
 
 @end
