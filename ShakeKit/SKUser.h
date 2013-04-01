@@ -13,7 +13,7 @@
 
 @property (assign) NSInteger userID;
 @property (copy) NSString *screenName;
-@property (retain) NSURL *profileImageURL;
+@property (strong) NSURL *profileImageURL;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

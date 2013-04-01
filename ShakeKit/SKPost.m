@@ -41,9 +41,9 @@ static NSString * const kPostViews = @"views";
     fileName = [[theDictionary objectForKey:kPostName] copy];
     fileDescription = [[theDictionary objectForKey:kPostDescription] copy];      
     user = [[SKUser alloc] initWithDictionary:[theDictionary objectForKey:@"user"]];
-    postDate = [ConvertStringToDate([theDictionary objectForKey:kPostedAt]) retain];
-    permalink = [[theDictionary objectForKey:kPostPermalinkPage] retain];
-    originalImageURL = [[theDictionary objectForKey:kPostOriginalImageURL] retain];
+    postDate = ConvertStringToDate([theDictionary objectForKey:kPostedAt]);
+    permalink = [theDictionary objectForKey:kPostPermalinkPage];
+    originalImageURL = [theDictionary objectForKey:kPostOriginalImageURL];
     height = [[theDictionary valueForKey:kPostHeight] integerValue];
     width = [[theDictionary valueForKey:kPostWidth] integerValue];
     views = [[theDictionary valueForKey:kPostViews] integerValue];
@@ -58,17 +58,5 @@ static NSString * const kPostViews = @"views";
 // | Memory Management
 // +--------------------------------------------------------------------
 
-- (void)dealloc
-{
-  SGRelease(title);
-  SGRelease(fileName);
-  SGRelease(fileDescription);
-  SGRelease(user);
-  SGRelease(postDate);
-  SGRelease(permalink);
-  SGRelease(originalImageURL);
- 
-  [super dealloc];
-}
 
 @end

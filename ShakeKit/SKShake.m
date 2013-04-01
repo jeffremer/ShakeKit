@@ -52,11 +52,11 @@ static NSString * const kShakeUpdatedAt = @"updated_at";
     title = [[theDictionary objectForKey:kShakeName] copy];
     shakeDescription = [[theDictionary objectForKey:kShakeDescription] copy];      
     owner = [[SKUser alloc] initWithDictionary:[theDictionary objectForKey:@"user"]];    
-    shakeURL = [[theDictionary objectForKey:kShakeURL] retain];
-    creationDate = [ConvertStringToDate([theDictionary objectForKey:kShakeCreatedAt]) retain];
-    thumbnailURL = [[theDictionary objectForKey:kShakeThumbnailURL] retain];
+    shakeURL = [theDictionary objectForKey:kShakeURL];
+    creationDate = ConvertStringToDate([theDictionary objectForKey:kShakeCreatedAt]);
+    thumbnailURL = [theDictionary objectForKey:kShakeThumbnailURL];
     type = ConvertStringToShakeType([theDictionary valueForKey:kShakeType]);
-    lastUpdatedDate = [ConvertStringToDate([theDictionary objectForKey:kShakeUpdatedAt]) retain];
+    lastUpdatedDate = ConvertStringToDate([theDictionary objectForKey:kShakeUpdatedAt]);
   }
   
   return self;
@@ -68,16 +68,5 @@ static NSString * const kShakeUpdatedAt = @"updated_at";
 // | Memory Management
 // +--------------------------------------------------------------------
 
-- (void)dealloc
-{
-  SGRelease(title);
-  SGRelease(shakeDescription);
-  SGRelease(owner);
-  SGRelease(shakeURL);
-  SGRelease(creationDate);
-  SGRelease(thumbnailURL);
-  SGRelease(lastUpdatedDate);
-  [super dealloc];
-}
 
 @end

@@ -22,12 +22,12 @@ typedef enum
 @property (assign) NSInteger shakeID;;
 @property (copy) NSString *title;
 @property (copy) NSString *shakeDescription;
-@property (retain) SKUser *owner;
-@property (retain) NSURL *shakeURL;
-@property (retain) NSDate *creationDate;
-@property (retain) NSURL *thumbnailURL;
+@property (strong) SKUser *owner;
+@property (strong) NSURL *shakeURL;
+@property (strong) NSDate *creationDate;
+@property (strong) NSURL *thumbnailURL;
 @property (assign) SKShakeType type;
-@property (retain) NSDate *lastUpdatedDate;
+@property (strong) NSDate *lastUpdatedDate;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

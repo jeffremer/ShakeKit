@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F1EFBDE170A308000825226 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F1EFBDD170A308000825226 /* libz.dylib */; };
+		A1907AD04154477BB6C20655 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F3B04348C24B3180A8CD6F /* libPods.a */; };
 		D0750C801395B2FE006A85E7 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = D0750C7A1395B2FD006A85E7 /* NSData+Base64.h */; };
 		D0750C811395B2FE006A85E7 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = D0750C7B1395B2FE006A85E7 /* NSData+Base64.m */; };
 		D0750C821395B2FE006A85E7 /* OAuth+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = D0750C7C1395B2FE006A85E7 /* OAuth+Additions.h */; };
@@ -23,12 +25,10 @@
 		D088D5C11391287D00B6F98C /* NSDate+DateConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = D088D5BF1391287D00B6F98C /* NSDate+DateConversion.m */; };
 		D0AA09601387412D00E4A8C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0AA095F1387412D00E4A8C1 /* Foundation.framework */; };
 		D0AA09A3138741C000E4A8C1 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AA0983138741C000E4A8C1 /* JSONKit.h */; };
-		D0AA09A4138741C000E4A8C1 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AA0984138741C000E4A8C1 /* JSONKit.m */; };
 		D0AA09AC1387422500E4A8C1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0AA09AB1387422500E4A8C1 /* CFNetwork.framework */; };
 		D0AA09AE1387423400E4A8C1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0AA09AD1387423400E4A8C1 /* SystemConfiguration.framework */; };
 		D0AA09B01387423C00E4A8C1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0AA09AF1387423C00E4A8C1 /* MobileCoreServices.framework */; };
 		D0AA09B21387424900E4A8C1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0AA09B11387424900E4A8C1 /* CoreGraphics.framework */; };
-		D0AA09B41387425A00E4A8C1 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0AA09B31387425A00E4A8C1 /* libz.1.2.3.dylib */; };
 		D0AA09B71387433300E4A8C1 /* NSString+URIEscaping.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AA09B51387433300E4A8C1 /* NSString+URIEscaping.h */; };
 		D0AA09B81387433300E4A8C1 /* NSString+URIEscaping.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AA09B61387433300E4A8C1 /* NSString+URIEscaping.m */; };
 		D0AA09BB1387438200E4A8C1 /* ShakeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AA09B91387438200E4A8C1 /* ShakeKit.h */; };
@@ -38,30 +38,24 @@
 		D0AA09C31387465600E4A8C1 /* NSDictionary+ParameterString.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AA09C11387465600E4A8C1 /* NSDictionary+ParameterString.h */; };
 		D0AA09C41387465600E4A8C1 /* NSDictionary+ParameterString.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AA09C21387465600E4A8C1 /* NSDictionary+ParameterString.m */; };
 		D0AD490713958CDA006E6C42 /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AD48B513958CDA006E6C42 /* ASIAuthenticationDialog.h */; };
-		D0AD490813958CDA006E6C42 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AD48B613958CDA006E6C42 /* ASIAuthenticationDialog.m */; };
 		D0AD490913958CDA006E6C42 /* ASICacheDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AD48B713958CDA006E6C42 /* ASICacheDelegate.h */; };
 		D0AD490A13958CDA006E6C42 /* ASIDataCompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AD48B813958CDA006E6C42 /* ASIDataCompressor.h */; };
-		D0AD490B13958CDA006E6C42 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AD48B913958CDA006E6C42 /* ASIDataCompressor.m */; };
 		D0AD490C13958CDA006E6C42 /* ASIDataDecompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AD48BA13958CDA006E6C42 /* ASIDataDecompressor.h */; };
-		D0AD490D13958CDA006E6C42 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AD48BB13958CDA006E6C42 /* ASIDataDecompressor.m */; };
 		D0AD490E13958CDA006E6C42 /* ASIDownloadCache.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AD48BC13958CDA006E6C42 /* ASIDownloadCache.h */; };
-		D0AD490F13958CDA006E6C42 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AD48BD13958CDA006E6C42 /* ASIDownloadCache.m */; };
 		D0AD491013958CDA006E6C42 /* ASIFormDataRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AD48BE13958CDA006E6C42 /* ASIFormDataRequest.h */; };
-		D0AD491113958CDA006E6C42 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AD48BF13958CDA006E6C42 /* ASIFormDataRequest.m */; };
 		D0AD491213958CDA006E6C42 /* ASIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AD48C013958CDA006E6C42 /* ASIHTTPRequest.h */; };
-		D0AD491313958CDA006E6C42 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AD48C113958CDA006E6C42 /* ASIHTTPRequest.m */; };
 		D0AD491413958CDA006E6C42 /* ASIHTTPRequestConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AD48C213958CDA006E6C42 /* ASIHTTPRequestConfig.h */; };
 		D0AD491513958CDA006E6C42 /* ASIHTTPRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AD48C313958CDA006E6C42 /* ASIHTTPRequestDelegate.h */; };
 		D0AD491613958CDA006E6C42 /* ASIInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AD48C413958CDA006E6C42 /* ASIInputStream.h */; };
-		D0AD491713958CDA006E6C42 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AD48C513958CDA006E6C42 /* ASIInputStream.m */; };
 		D0AD491813958CDA006E6C42 /* ASINetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AD48C613958CDA006E6C42 /* ASINetworkQueue.h */; };
-		D0AD491913958CDA006E6C42 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AD48C713958CDA006E6C42 /* ASINetworkQueue.m */; };
 		D0AD491A13958CDA006E6C42 /* ASIProgressDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AD48C813958CDA006E6C42 /* ASIProgressDelegate.h */; };
 		D0AD495713958D02006E6C42 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = D0AD495513958D02006E6C42 /* Reachability.h */; };
-		D0AD495813958D02006E6C42 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AD495613958D02006E6C42 /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F1EFBDD170A308000825226 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		8D14D7C075C4429FA960237D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		B0F3B04348C24B3180A8CD6F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0750C7A1395B2FD006A85E7 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "External/OAuthCore/NSData+Base64.h"; sourceTree = SOURCE_ROOT; };
 		D0750C7B1395B2FE006A85E7 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "External/OAuthCore/NSData+Base64.m"; sourceTree = SOURCE_ROOT; };
 		D0750C7C1395B2FE006A85E7 /* OAuth+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OAuth+Additions.h"; path = "External/OAuthCore/OAuth+Additions.h"; sourceTree = SOURCE_ROOT; };
@@ -85,7 +79,6 @@
 		D0AA09AD1387423400E4A8C1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D0AA09AF1387423C00E4A8C1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D0AA09B11387424900E4A8C1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		D0AA09B31387425A00E4A8C1 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		D0AA09B51387433300E4A8C1 /* NSString+URIEscaping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+URIEscaping.h"; path = "../External/OAuthCore/NSString+URIEscaping.h"; sourceTree = "<group>"; };
 		D0AA09B61387433300E4A8C1 /* NSString+URIEscaping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+URIEscaping.m"; path = "../External/OAuthCore/NSString+URIEscaping.m"; sourceTree = "<group>"; };
 		D0AA09B91387438200E4A8C1 /* ShakeKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakeKit.h; sourceTree = "<group>"; };
@@ -123,12 +116,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0AA09B41387425A00E4A8C1 /* libz.1.2.3.dylib in Frameworks */,
+				1F1EFBDE170A308000825226 /* libz.dylib in Frameworks */,
 				D0AA09B21387424900E4A8C1 /* CoreGraphics.framework in Frameworks */,
 				D0AA09B01387423C00E4A8C1 /* MobileCoreServices.framework in Frameworks */,
 				D0AA09AE1387423400E4A8C1 /* SystemConfiguration.framework in Frameworks */,
 				D0AA09AC1387422500E4A8C1 /* CFNetwork.framework in Frameworks */,
 				D0AA09601387412D00E4A8C1 /* Foundation.framework in Frameworks */,
+				A1907AD04154477BB6C20655 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +150,7 @@
 				D0AA0969138741C000E4A8C1 /* External */,
 				D0AA095E1387412D00E4A8C1 /* Frameworks */,
 				D0AA095D1387412D00E4A8C1 /* Products */,
+				8D14D7C075C4429FA960237D /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -170,12 +165,13 @@
 		D0AA095E1387412D00E4A8C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D0AA09B31387425A00E4A8C1 /* libz.1.2.3.dylib */,
+				1F1EFBDD170A308000825226 /* libz.dylib */,
 				D0AA09B11387424900E4A8C1 /* CoreGraphics.framework */,
 				D0AA09AF1387423C00E4A8C1 /* MobileCoreServices.framework */,
 				D0AA09AD1387423400E4A8C1 /* SystemConfiguration.framework */,
 				D0AA09AB1387422500E4A8C1 /* CFNetwork.framework */,
 				D0AA095F1387412D00E4A8C1 /* Foundation.framework */,
+				B0F3B04348C24B3180A8CD6F /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -306,6 +302,7 @@
 				D0AA09581387412D00E4A8C1 /* Sources */,
 				D0AA09591387412D00E4A8C1 /* Frameworks */,
 				D0AA095A1387412D00E4A8C1 /* Headers */,
+				808175B67365475B8AB8B777 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -341,12 +338,28 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		808175B67365475B8AB8B777 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D0AA09581387412D00E4A8C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0AA09A4138741C000E4A8C1 /* JSONKit.m in Sources */,
 				D0AA09BC1387438200E4A8C1 /* ShakeKit.m in Sources */,
 				D0AA09C01387448200E4A8C1 /* ShakeKitConstants.m in Sources */,
 				D0AA09B81387433300E4A8C1 /* NSString+URIEscaping.m in Sources */,
@@ -355,15 +368,6 @@
 				D088D5B71390AB3700B6F98C /* SKUser.m in Sources */,
 				D088D5BD1391248E00B6F98C /* SKShake.m in Sources */,
 				D088D5C11391287D00B6F98C /* NSDate+DateConversion.m in Sources */,
-				D0AD490813958CDA006E6C42 /* ASIAuthenticationDialog.m in Sources */,
-				D0AD490B13958CDA006E6C42 /* ASIDataCompressor.m in Sources */,
-				D0AD490D13958CDA006E6C42 /* ASIDataDecompressor.m in Sources */,
-				D0AD490F13958CDA006E6C42 /* ASIDownloadCache.m in Sources */,
-				D0AD491113958CDA006E6C42 /* ASIFormDataRequest.m in Sources */,
-				D0AD491313958CDA006E6C42 /* ASIHTTPRequest.m in Sources */,
-				D0AD491713958CDA006E6C42 /* ASIInputStream.m in Sources */,
-				D0AD491913958CDA006E6C42 /* ASINetworkQueue.m in Sources */,
-				D0AD495813958D02006E6C42 /* Reachability.m in Sources */,
 				D0750C811395B2FE006A85E7 /* NSData+Base64.m in Sources */,
 				D0750C831395B2FE006A85E7 /* OAuth+Additions.m in Sources */,
 				D0750C851395B2FE006A85E7 /* OAuthCore.m in Sources */,
@@ -404,8 +408,9 @@
 		};
 		D0AA09671387412D00E4A8C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D14D7C075C4429FA960237D /* Pods.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/ShakeKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShakeKit/ShakeKit-Prefix.pch";
@@ -420,8 +425,9 @@
 		};
 		D0AA09681387412D00E4A8C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D14D7C075C4429FA960237D /* Pods.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/ShakeKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShakeKit/ShakeKit-Prefix.pch";

@@ -13,7 +13,7 @@ NSDate *ConvertStringToDate(NSString *dateString)
   NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
   
   
-  NSLocale *locale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"] autorelease];
+  NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
   [formatter setLocale:locale];
   
   // 2011-05-27T22:25:27Z
@@ -26,7 +26,6 @@ NSDate *ConvertStringToDate(NSString *dateString)
     NSLog(@"Date '%@' could not be parsed: %@", dateString, dateParsingError);
   }
   
-  [formatter release];
   return parsedDate;
 }
 

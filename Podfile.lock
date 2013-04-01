@@ -1,0 +1,23 @@
+
+PODS:
+- AFNetworking (1.2.0)
+- CocoaLumberjack (1.6)
+- Kiwi (2.0.6)
+- Nocilla (0.3)
+- OCMock (2.0.1)
+
+DEPENDENCIES:
+- AFNetworking
+- CocoaLumberjack
+- Kiwi
+- Nocilla
+- OCMock
+
+SPEC CHECKSUMS:
+  AFNetworking: 3cbae45f61a9f995cdbd56bd571223910d7f4e44
+  CocoaLumberjack: 0f2fa7090a23f13261072d882e017c688300efbe
+  Kiwi: 56082a80f942de4d10423d8d8a599ab30cf50228
+  Nocilla: 03b036f74f6d2893d311e8993ddbb42234602bc7
+  OCMock: 77a9c4c57af6bf258a537d34cf09abf422affede
+
+COCOAPODS: 0.16.4

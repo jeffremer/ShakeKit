@@ -8,19 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@class ASIHTTPRequest;
 @class SKShake;
 @class SKUser;
 
 typedef void (^SKCompletionHandler)(id response, NSError *error);
-
 
 @interface ShakeKit : NSObject 
 
 @property (copy) NSString *applicationKey;
 @property (copy) NSString *applicationSecret;
 
-@property (retain) NSOperationQueue *queue;
+@property (strong) NSOperationQueue *queue;
 
 /** 
  Initialize an instance of ShakeKit using the credential you get from applying at this URL:
@@ -102,7 +100,8 @@ typedef void (^SKCompletionHandler)(id response, NSError *error);
  POST a multipart/form-data containing the file information in field called "file". 
  Optionally, include an SKShake to post to a shake other than the currently authenticated user's user shake.
 */
-- (void)uploadFileFromLocalPath:(NSURL *)localPath toShake:(SKShake *)shake withCompletionHandler:(SKCompletionHandler)handler;
+
+- (void)uploadFileFromLocalPath:(NSURL *)localPath toShake:(SKShake *)shake progress:(void (^)(float progress))progressBlock completionHandler:(SKCompletionHandler)handler;
 
 
 @end

@@ -24,7 +24,7 @@ static NSString * const kUserProfileImageURL = @"profile_image_url";
   {
     userID = [[theDictionary objectForKey:kUserID] integerValue];
     screenName = [[theDictionary objectForKey:kUserName] copy];
-    profileImageURL = [[theDictionary objectForKey:kUserProfileImageURL] retain];
+    profileImageURL = [theDictionary objectForKey:kUserProfileImageURL];
   }
   
   return self;
@@ -36,12 +36,5 @@ static NSString * const kUserProfileImageURL = @"profile_image_url";
 // | Memory Management
 // +--------------------------------------------------------------------
 
-- (void)dealloc
-{
-  SGRelease(screenName);
-  SGRelease(profileImageURL);
-
-  [super dealloc];
-}
 
 @end
