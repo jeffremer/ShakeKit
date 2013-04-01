@@ -8,7 +8,7 @@
 #
 Pod::Spec.new do |s|
   s.name         = "ShakeKit"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "A short description of ShakeKit."
   s.homepage     = "http://github.com/jeffremer/ShakeKit"
 
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.author       = { "Jeff Remer" => "jeff@threestarchina.com" }
   s.source       = { :git => "http://github.com/jeffremer/ShakeKit.git", :tag => "0.0.1" }
   s.platform     = :ios, '6.0'
-  s.source_files = 'Classes', 'Classes/**/*.{h,m}', 'External', 'External/**/*.{h,m}'
+  s.source_files = 'ShakeKit', 'ShakeKit/**/*.{h,m}', 'External', 'External/**/*.{h,m}'
   s.requires_arc = true
 
   s.dependency 'AFNetworking', '~> 1.1.0'
