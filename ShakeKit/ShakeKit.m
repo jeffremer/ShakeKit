@@ -55,10 +55,10 @@
         if (error) {
             theHandler(nil, error);
         } else {
-        [defaults setObject:JSON[@"access_token"] forKey:kOAuthAccessToken];
-        [defaults setObject:JSON[@"secret"] forKey:kOAuthAccessSecret];
-        [defaults synchronize];
-        theHandler(JSON, nil);
+            [defaults setObject:JSON[@"access_token"] forKey:kOAuthAccessToken];
+            [defaults setObject:JSON[@"secret"] forKey:kOAuthAccessSecret];
+            [defaults synchronize];
+            theHandler(JSON, nil);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         theHandler(nil, error);
