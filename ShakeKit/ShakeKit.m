@@ -67,61 +67,61 @@
 
 - (void)loadFavoritesWithCompletionHandler:(SKCompletionHandler)handler
 {
-    NSString *path = @"/favorites";
+    NSString *path = @"/api/favorites";
     [self loadArrayOfClass:[SKPost class] key:@"favorites" path:path completionHandler:handler];
 }
 
 - (void)loadFavoritesBeforeKey:(NSString *)theKey completionHandler:(SKCompletionHandler)handler
 {
-    NSString *path = [NSString stringWithFormat:@"/favorites/before/%@", theKey];
+    NSString *path = [NSString stringWithFormat:@"/api/favorites/before/%@", theKey];
     [self loadArrayOfClass:[SKPost class] key:@"favorites" path:path completionHandler:handler];
 }
 
 - (void)loadFavoritesAfterKey:(NSString *)theKey completionHandler:(SKCompletionHandler)handler
 {
-    NSString *path = [NSString stringWithFormat:@"/favorites/after/%@", theKey];
+    NSString *path = [NSString stringWithFormat:@"/api/favorites/after/%@", theKey];
     [self loadArrayOfClass:[SKPost class] key:@"favorites" path:path completionHandler:handler];
 }
 
 - (void)loadFriendsTimelineWithCompletionHandler:(SKCompletionHandler)handler
 {
-    NSString *path = @"/friends";
+    NSString *path = @"/api/friends";
     [self loadArrayOfClass:[SKPost class] key:@"friend_shake" path:path completionHandler:handler];
 }
 
 - (void)loadFriendsTimelineBeforeKey:(NSString *)theKey completionHandler:(SKCompletionHandler)handler
 {
-    NSString *path = [NSString stringWithFormat:@"/friends/before/%@", theKey];
+    NSString *path = [NSString stringWithFormat:@"/api/friends/before/%@", theKey];
     [self loadArrayOfClass:[SKPost class] key:@"friend_shake" path:path completionHandler:handler];
 }
 
 - (void)loadFriendsTimelineAfterKey:(NSString *)theKey completionHandler:(SKCompletionHandler)handler
 {
-    NSString *path = [NSString stringWithFormat:@"/friends/after/%@", theKey];
+    NSString *path = [NSString stringWithFormat:@"/api/friends/after/%@", theKey];
     [self loadArrayOfClass:[SKPost class] key:@"friend_shake" path:path completionHandler:handler];
 }
 
 - (void)loadMagicFilesWithCompletionHandler:(SKCompletionHandler)handler
 {
-    NSString *path = @"/magicfiles";
+    NSString *path = @"/api/magicfiles";
     [self loadArrayOfClass:[SKPost class] key:@"magicfiles" path:path completionHandler:handler];
 }
 
 - (void)loadSharedFileWithKey:(NSString *)theKey completionHandler:(SKCompletionHandler)handler
 {
-    NSString *path = [NSString stringWithFormat:@"/sharedfile/%@", theKey];
+    NSString *path = [NSString stringWithFormat:@"/api/sharedfile/%@", theKey];
     [self loadObjectOfClass:[SKPost class] path:path completionHandler:handler];
 }
 
 - (void)loadProfileForUserWithID:(NSInteger)theUserID completionHandler:(SKCompletionHandler)handler
 {
-    NSString *path = [NSString stringWithFormat:@"/user_id/%ld", (long)theUserID];
+    NSString *path = [NSString stringWithFormat:@"/api/user_id/%ld", (long)theUserID];
     [self loadObjectOfClass:[SKUser class] path:path completionHandler:handler];
 }
 
 - (void)loadProfileForUserWithName:(NSString *)theScreenName completionHandler:(SKCompletionHandler)handler
 {
-    NSString *path = [NSString stringWithFormat:@"/user_name/%@", theScreenName];
+    NSString *path = [NSString stringWithFormat:@"/api/user_name/%@", theScreenName];
     [self loadObjectOfClass:[SKUser class] path:path completionHandler:handler];
 }
 
@@ -132,13 +132,13 @@
 
 - (void)loadProfileForCurrentlyAuthenticatedUserWithCompletionHandler:(SKCompletionHandler)handler
 {
-    NSString *path = @"/user";
+    NSString *path = @"/api/user";
     [self loadObjectOfClass:[SKUser class] path:path completionHandler:handler];
 }
 
 - (void)loadShakesWithCompletionHandler:(SKCompletionHandler)handler
 {
-    NSString *path = @"/shakes";
+    NSString *path = @"/api/shakes";
     [self loadArrayOfClass:[SKShake class] key:@"shakes" path:path completionHandler:handler];
 }
 
@@ -152,24 +152,18 @@
         return;
     }
 
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", kSKProtocolHTTPS, kSKMlkShkAPIHost]];
-
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     if (theShake) {
         params[@"shake_id"] = @(theShake.shakeID);
     }
 
     NSData *data = [NSData dataWithContentsOfURL:theLocalPath];
-    NSMutableURLRequest *request = [self multipartFormRequestWithMethod:kSKMethodPOST path:@"/upload" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    NSString *path = @"/api/upload";
+    NSMutableURLRequest *request = [self multipartFormRequestWithMethod:kSKMethodPOST path:path parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:data name:@"file" fileName:[theLocalPath relativeString] mimeType:@"image/png"];
     }];
 
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [defaults objectForKey:kOAuthAccessToken];
-    NSString *secret = [defaults objectForKey:kOAuthAccessSecret];
-
-    NSString *header = OAuth2Header(url, kSKMethodPOST, 80, self.applicationKey, self.applicationSecret, token, secret);
-    [request setValue:@"Authorization" forHTTPHeaderField:header];
+    [request setValue:@"Authorization" forHTTPHeaderField:[self authorizationHeaderWithPath:path method:kSKMethodPOST]];
 
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 
