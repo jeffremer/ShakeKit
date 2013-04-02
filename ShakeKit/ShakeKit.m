@@ -23,9 +23,6 @@
 {
 
     if ((self = [super initWithBaseURL:[NSURL URLWithString:@"https://mlkshk.com"]])) {
-        _queue = [[NSOperationQueue alloc] init];
-        _queue.maxConcurrentOperationCount = 3;
-
         _applicationKey = theKey;
         _applicationSecret = theSecret;
     }
@@ -50,17 +47,22 @@
         @"grant_type" : @"password"
     };
 
-    NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"/token" parameters:params];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+    [self postPath:@"/api/token" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSError *error = nil;
+        id JSON = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&error];
+
+        if (error) {
+            theHandler(nil, error);
+        } else {
         [defaults setObject:JSON[@"access_token"] forKey:kOAuthAccessToken];
         [defaults setObject:JSON[@"secret"] forKey:kOAuthAccessSecret];
         [defaults synchronize];
         theHandler(JSON, nil);
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         theHandler(nil, error);
     }];
-    [self.queue addOperation:operation];
 }
 
 - (void)loadFavoritesWithCompletionHandler:(SKCompletionHandler)handler
@@ -187,8 +189,6 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         handler(nil, error);
     }];
-
-    [self.queue addOperation:operation];
 }
 
 #pragma mark -
@@ -197,7 +197,7 @@
 // | Private/Convenience Methods
 // +--------------------------------------------------------------------
 
-- (AFJSONRequestOperation *)operationWithPath:(NSString *)path method:(NSString*)method
+- (NSString *)authorizationHeaderWithPath:(NSString *)path method:(NSString*)method
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [defaults objectForKey:kOAuthAccessToken];
@@ -205,31 +205,26 @@
 
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@%@", kSKProtocolHTTPS, kSKMlkShkAPIHost, path]];
     NSString *header = OAuth2Header(url, method, 80, self.applicationKey, self.applicationSecret, token, secret);
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    request.HTTPMethod = method;
-    [request setValue:@"Authorization" forHTTPHeaderField:header];
-
-    AFJSONRequestOperation *operation = [[AFJSONRequestOperation alloc] initWithRequest:request];
-    return operation;
+    return header;
 }
 
 - (void)loadObjectOfClass:(Class)aClass path:(NSString*)path completionHandler:(SKCompletionHandler)handler
 {
-    AFJSONRequestOperation *operation = [self operationWithPath:path method:kSKMethodGET];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString *header = [self authorizationHeaderWithPath:path method:kSKMethodGET];
+    [self setDefaultHeader:header value:@"Authorization"];
+    [self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         id object = [[aClass alloc] initWithDictionary:responseObject];
         handler(object, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         handler(nil, error);
     }];
-
-    [self.queue addOperation:operation];
 }
 
 - (void)loadArrayOfClass:(Class)aClass key:(NSString*)key path:(NSString*)path completionHandler:(SKCompletionHandler)handler
 {
-    AFJSONRequestOperation *operation = [self operationWithPath:path method:kSKMethodGET];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString *header = [self authorizationHeaderWithPath:path method:kSKMethodGET];
+    [self setDefaultHeader:header value:@"Authorization"];
+    [self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSMutableArray *objects = [[NSMutableArray alloc] init];
         for (NSDictionary *dict in responseObject[key]) {
             id object = [[aClass alloc] initWithDictionary:dict];
@@ -239,7 +234,5 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         handler(nil, error);
     }];
-    
-    [self.queue addOperation:operation];
 }
 @end
