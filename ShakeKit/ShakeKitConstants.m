@@ -14,7 +14,7 @@ NSString * const kSKProtocolHTTPS = @"https";
 NSString * const kSKMethodGET = @"GET";
 NSString * const kSKMethodPOST = @"POST";
 
-NSString * const kSKMlkShkAPIHost = @"mlkshk.com/api";
+NSString * const kSKMlkShkAPIHost = @"mlkshk.com";
 
 NSString * const kOAuthAccessToken = @"ShakeKitAccessToken";
 NSString * const kOAuthAccessSecret = @"ShakeKitAccessSecret";

@@ -10,7 +10,5 @@
 extern NSString *OAuth2Header(NSURL *url,
                               NSString *method,
                               NSInteger port,
-                              NSString *_oAuthConsumerKey,
-                              NSString *_oAuthConsumerSecret,
                               NSString *_oAuthToken,
                               NSString *_oAuthTokenSecret);

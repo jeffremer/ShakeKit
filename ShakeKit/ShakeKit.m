@@ -198,7 +198,7 @@
     NSString *secret = [defaults objectForKey:kOAuthAccessSecret];
 
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@%@", kSKProtocolHTTPS, kSKMlkShkAPIHost, path]];
-    NSString *header = OAuth2Header(url, method, 80, self.applicationKey, self.applicationSecret, token, secret);
+    NSString *header = OAuth2Header(url, method, 80, token, secret);
     return header;
 }
 

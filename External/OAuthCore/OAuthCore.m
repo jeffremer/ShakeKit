@@ -9,18 +9,6 @@
 #import "OAuth+Additions.h"
 #import "NSData+Base64.h"
 #import <CommonCrypto/CommonHMAC.h>
-#import "NSString+URIEscaping.h"
-
-static NSInteger SortParameter(NSString *key1, NSString *key2, void *context) {
-	NSComparisonResult r = [key1 compare:key2];
-	if(r == NSOrderedSame) { // compare by value in this case
-		NSDictionary *dict = (__bridge NSDictionary *)context;
-		NSString *value1 = [dict objectForKey:key1];
-		NSString *value2 = [dict objectForKey:key2];
-		return [value1 compare:value2];
-	}
-	return r;
-}
 
 static NSData *HMAC_SHA1(NSString *data, NSString *key) {
 	unsigned char buf[CC_SHA1_DIGEST_LENGTH];
@@ -29,9 +17,8 @@ static NSData *HMAC_SHA1(NSString *data, NSString *key) {
 }
 
 extern NSString *OAuth2Header(NSURL *url,
-                              NSString *method, NSInteger port,
-                              NSString *_oAuthConsumerKey,
-                              NSString *_oAuthConsumerSecret,
+                              NSString *method,
+                              NSInteger port,
                               NSString *_oAuthToken,
                               NSString *_oAuthTokenSecret)
 {
@@ -47,7 +34,6 @@ extern NSString *OAuth2Header(NSURL *url,
     [normalizedString appendFormat:@"%@\n", [url host]];
     [normalizedString appendFormat:@"%d\n", port];
     [normalizedString appendFormat:@"%@\n", [url path]];
-
 
     NSData *signature = HMAC_SHA1(normalizedString, _oAuthTokenSecret);
 	NSString *base64Signature = [signature base64EncodedString];
