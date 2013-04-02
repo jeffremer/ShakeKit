@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum 
-{  
-  SKShakeTypeUser,  // User created shake type.
-  SKShakeTypeGroup,  // Foo?
-  SKShakeTypeUnknown,
+typedef enum
+{
+    SKShakeTypeUser,  // User created shake type.
+    SKShakeTypeGroup,  // Foo?
+    SKShakeTypeUnknown,
 } SKShakeType;
 
 @class SKUser;
 
-@interface SKShake : NSObject 
+@interface SKShake : NSObject
 
 @property (assign) NSInteger shakeID;;
 @property (copy) NSString *title;

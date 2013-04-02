@@ -7,18 +7,18 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *OAuthorizationHeader(NSURL *url, 
-									  NSString *method, 
-									  NSData *body, 
-									  NSString *_oAuthConsumerKey, 
-									  NSString *_oAuthConsumerSecret, 
-									  NSString *_oAuthToken, 
+extern NSString *OAuthorizationHeader(NSURL *url,
+									  NSString *method,
+									  NSData *body,
+									  NSString *_oAuthConsumerKey,
+									  NSString *_oAuthConsumerSecret,
+									  NSString *_oAuthToken,
 									  NSString *_oAuthTokenSecret);
 
-extern NSString *OAuth2Header(NSURL *url, 
-                              NSString *method, 
+extern NSString *OAuth2Header(NSURL *url,
+                              NSString *method,
                               NSInteger port,
-                              NSString *_oAuthConsumerKey, 
-                              NSString *_oAuthConsumerSecret, 
-                              NSString *_oAuthToken, 
+                              NSString *_oAuthConsumerKey,
+                              NSString *_oAuthConsumerSecret,
+                              NSString *_oAuthToken,
                               NSString *_oAuthTokenSecret);

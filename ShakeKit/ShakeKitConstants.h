@@ -10,8 +10,8 @@
 
 // Error codes in the dropbox.com domain represent the HTTP status code if less than 1000
 typedef enum {
-  SKShakeErrorNone = 0,
-  SKShakeErrorFileNotFound = 404,
+    SKShakeErrorNone = 0,
+    SKShakeErrorFileNotFound = 404,
 } SKShakeErrorCode;
 
 

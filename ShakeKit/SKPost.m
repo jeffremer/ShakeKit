@@ -35,21 +35,21 @@ static NSString * const kPostViews = @"views";
 
 - (id)initWithDictionary:(NSDictionary *)theDictionary
 {
-  if ((self = [super init]))
-  {
-    title = [[theDictionary objectForKey:kPostTitle] copy];
-    fileName = [[theDictionary objectForKey:kPostName] copy];
-    fileDescription = [[theDictionary objectForKey:kPostDescription] copy];      
-    user = [[SKUser alloc] initWithDictionary:[theDictionary objectForKey:@"user"]];
-    postDate = ConvertStringToDate([theDictionary objectForKey:kPostedAt]);
-    permalink = [theDictionary objectForKey:kPostPermalinkPage];
-    originalImageURL = [theDictionary objectForKey:kPostOriginalImageURL];
-    height = [[theDictionary valueForKey:kPostHeight] integerValue];
-    width = [[theDictionary valueForKey:kPostWidth] integerValue];
-    views = [[theDictionary valueForKey:kPostViews] integerValue];
-  }
-  
-  return self;
+    if ((self = [super init]))
+    {
+        title = [[theDictionary objectForKey:kPostTitle] copy];
+        fileName = [[theDictionary objectForKey:kPostName] copy];
+        fileDescription = [[theDictionary objectForKey:kPostDescription] copy];
+        user = [[SKUser alloc] initWithDictionary:[theDictionary objectForKey:@"user"]];
+        postDate = ConvertStringToDate([theDictionary objectForKey:kPostedAt]);
+        permalink = [theDictionary objectForKey:kPostPermalinkPage];
+        originalImageURL = [theDictionary objectForKey:kPostOriginalImageURL];
+        height = [[theDictionary valueForKey:kPostHeight] integerValue];
+        width = [[theDictionary valueForKey:kPostWidth] integerValue];
+        views = [[theDictionary valueForKey:kPostViews] integerValue];
+    }
+
+    return self;
 }
 
 #pragma mark -

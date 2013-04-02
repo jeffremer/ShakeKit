@@ -8,11 +8,6 @@
 
 #import "ShakeKit.h"
 
-#import <MobileCoreServices/MobileCoreServices.h>
-#import <SystemConfiguration/SystemConfiguration.h>
-
-#import "AFNetworking.h"
-
 #import "ShakeKitConstants.h"
 #import "OAuthCore.h"
 #import "OAuth+Additions.h"
@@ -26,8 +21,8 @@
 
 - (id)initWithApplicationKey:(NSString *)theKey secret:(NSString *)theSecret
 {
-    if ((self = [super init]))
-    {
+
+    if ((self = [super initWithBaseURL:[NSURL URLWithString:@"https://mlkshk.com"]])) {
         _queue = [[NSOperationQueue alloc] init];
         _queue.maxConcurrentOperationCount = 3;
 
@@ -47,18 +42,15 @@
 
 - (void)loginWithUsername:(NSString *)theUsername password:(NSString *)thePassword withCompletionHandler:(SKCompletionHandler)theHandler
 {
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:theUsername, @"username", thePassword, @"password", nil];
-    NSMutableDictionary *mutableParams = [[NSMutableDictionary alloc] initWithDictionary:params];
-    [mutableParams setValue:self.applicationKey forKey:@"client_id"];
-    [mutableParams setValue:self.applicationSecret forKey:@"client_secret"];
-    [mutableParams setValue:@"password" forKey:@"grant_type"];
+    NSDictionary *params = @{
+        @"username" : theUsername,
+        @"password" : thePassword,
+        @"client_id" : self.applicationKey,
+        @"client_secret" : self.applicationSecret,
+        @"grant_type" : @"password"
+    };
 
-    NSString *escapedPath = [NSString escapePath:@"/token"];
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@%@", kSKProtocolHTTPS, kSKMlkShkAPIHost, escapedPath];
-    NSString *body = [mutableParams convertToURIParameterString];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", urlString, body]];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    request.HTTPMethod = @"POST";
+    NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"/token" parameters:params];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:JSON[@"access_token"] forKey:kOAuthAccessToken];
@@ -160,14 +152,13 @@
 
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", kSKProtocolHTTPS, kSKMlkShkAPIHost]];
 
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:url];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     if (theShake) {
         params[@"shake_id"] = @(theShake.shakeID);
     }
 
     NSData *data = [NSData dataWithContentsOfURL:theLocalPath];
-    NSMutableURLRequest *request = [client multipartFormRequestWithMethod:kSKMethodPOST path:@"/upload" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    NSMutableURLRequest *request = [self multipartFormRequestWithMethod:kSKMethodPOST path:@"/upload" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:data name:@"file" fileName:[theLocalPath relativeString] mimeType:@"image/png"];
     }];
 
@@ -240,15 +231,15 @@
     AFJSONRequestOperation *operation = [self operationWithPath:path method:kSKMethodGET];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSMutableArray *objects = [[NSMutableArray alloc] init];
-        for (NSDictionary *object in responseObject[key]) {
-            id object = [[aClass alloc] initWithDictionary:object];
+        for (NSDictionary *dict in responseObject[key]) {
+            id object = [[aClass alloc] initWithDictionary:dict];
             [objects addObject:object];
         }
         handler(objects, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         handler(nil, error);
     }];
-
+    
     [self.queue addOperation:operation];
 }
 @end

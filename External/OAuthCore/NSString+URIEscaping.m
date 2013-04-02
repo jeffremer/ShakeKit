@@ -11,16 +11,16 @@
 
 @implementation NSString (URIEscaping)
 
-+ (NSString *)escapePath:(NSString*)path 
++ (NSString *)escapePath:(NSString*)path
 {
-  CFStringEncoding encoding = CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding);
-  NSString *escapedPath = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                                              (CFStringRef)path,
-                                                                              NULL,
-                                                                              (CFStringRef)@":?=,!$&'()*+;[]@#",
-                                                                              encoding));
-  
-  return escapedPath;
+    CFStringEncoding encoding = CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding);
+    NSString *escapedPath = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                  (CFStringRef)path,
+                                                                                                  NULL,
+                                                                                                  (CFStringRef)@":?=,!$&'()*+;[]@#",
+                                                                                                  encoding));
+    
+    return escapedPath;
 }
 
 

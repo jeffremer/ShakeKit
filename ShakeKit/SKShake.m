@@ -12,14 +12,14 @@
 
 SKShakeType ConvertStringToShakeType(NSString *shakeType)
 {
-  SKShakeType convertedType = SKShakeTypeUnknown;
-  
-  if ([shakeType isEqualToString:@"user"])
-  {
-    convertedType = SKShakeTypeUser;
-  }
-  
-  return convertedType;
+    SKShakeType convertedType = SKShakeTypeUnknown;
+
+    if ([shakeType isEqualToString:@"user"])
+    {
+        convertedType = SKShakeTypeUser;
+    }
+
+    return convertedType;
 }
 
 static NSString * const kShakeID = @"id";
@@ -46,20 +46,20 @@ static NSString * const kShakeUpdatedAt = @"updated_at";
 
 - (id)initWithDictionary:(NSDictionary *)theDictionary
 {
-  if ((self = [super init]))
-  {
-    shakeID = [[theDictionary valueForKey:kShakeID] integerValue];
-    title = [[theDictionary objectForKey:kShakeName] copy];
-    shakeDescription = [[theDictionary objectForKey:kShakeDescription] copy];      
-    owner = [[SKUser alloc] initWithDictionary:[theDictionary objectForKey:@"user"]];    
-    shakeURL = [theDictionary objectForKey:kShakeURL];
-    creationDate = ConvertStringToDate([theDictionary objectForKey:kShakeCreatedAt]);
-    thumbnailURL = [theDictionary objectForKey:kShakeThumbnailURL];
-    type = ConvertStringToShakeType([theDictionary valueForKey:kShakeType]);
-    lastUpdatedDate = ConvertStringToDate([theDictionary objectForKey:kShakeUpdatedAt]);
-  }
-  
-  return self;
+    if ((self = [super init]))
+    {
+        shakeID = [[theDictionary valueForKey:kShakeID] integerValue];
+        title = [[theDictionary objectForKey:kShakeName] copy];
+        shakeDescription = [[theDictionary objectForKey:kShakeDescription] copy];
+        owner = [[SKUser alloc] initWithDictionary:[theDictionary objectForKey:@"user"]];
+        shakeURL = [theDictionary objectForKey:kShakeURL];
+        creationDate = ConvertStringToDate([theDictionary objectForKey:kShakeCreatedAt]);
+        thumbnailURL = [theDictionary objectForKey:kShakeThumbnailURL];
+        type = ConvertStringToShakeType([theDictionary valueForKey:kShakeType]);
+        lastUpdatedDate = ConvertStringToDate([theDictionary objectForKey:kShakeUpdatedAt]);
+    }
+
+    return self;
 }
 
 #pragma mark -

@@ -10,7 +10,7 @@
 
 @class SKUser;
 
-@interface SKPost : NSObject 
+@interface SKPost : NSObject
 
 @property (copy) NSString *title;
 @property (copy) NSString *fileName;

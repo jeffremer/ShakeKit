@@ -20,14 +20,14 @@ static NSString * const kUserProfileImageURL = @"profile_image_url";
 
 - (id)initWithDictionary:(NSDictionary *)theDictionary
 {
-  if ((self = [super init]))
-  {
-    userID = [[theDictionary objectForKey:kUserID] integerValue];
-    screenName = [[theDictionary objectForKey:kUserName] copy];
-    profileImageURL = [theDictionary objectForKey:kUserProfileImageURL];
-  }
-  
-  return self;
+    if ((self = [super init]))
+    {
+        userID = [[theDictionary objectForKey:kUserID] integerValue];
+        screenName = [[theDictionary objectForKey:kUserName] copy];
+        profileImageURL = [theDictionary objectForKey:kUserProfileImageURL];
+    }
+
+    return self;
 }
 
 #pragma mark -

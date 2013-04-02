@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface SKUser : NSObject 
+@interface SKUser : NSObject
 
 @property (assign) NSInteger userID;
 @property (copy) NSString *screenName;

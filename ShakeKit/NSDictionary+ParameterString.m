@@ -13,17 +13,17 @@
 
 - (NSString *)convertToURIParameterString
 {
-  NSMutableArray *elements = [NSMutableArray array];
-  for (NSString *k in [self keyEnumerator]) 
-  {
-    NSString *escapedK = [NSString escapePath:k];
-    if (![k isEqualToString: @""]) 
+    NSMutableArray *elements = [NSMutableArray array];
+    for (NSString *k in [self keyEnumerator])
     {
-      NSString *escapedV = [NSString escapePath:[self objectForKey: k]];
-      [elements addObject:[NSString stringWithFormat: @"%@=%@", escapedK, escapedV]];
+        NSString *escapedK = [NSString escapePath:k];
+        if (![k isEqualToString: @""])
+        {
+            NSString *escapedV = [NSString escapePath:[self objectForKey: k]];
+            [elements addObject:[NSString stringWithFormat: @"%@=%@", escapedK, escapedV]];
+        }
     }
-  }
-  
-  return [elements componentsJoinedByString:@"&"];
+
+    return [elements componentsJoinedByString:@"&"];
 }
 @end
